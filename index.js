@@ -81,7 +81,7 @@ app.get('/api/stats', (req, res) => {
 
 app.get('/api/movies', (req, res) => {
     const page = parseInt(req.query.page) || 0;
-    const limit = parseInt(req.query.limit) || 50;
+    const limit = parseInt(req.query.limit) || 550;
     const search = (req.query.q || '').toLowerCase();
 
     let list = [...MOVIES_LIST];
@@ -206,7 +206,7 @@ const HTML = `<!DOCTYPE html>
             if(append&&!state.hasMore)return;
             state.loading=true;
             if(!append){el.grid.innerHTML='<div class="loading">Cargando...</div>';state.page=0;state.hasMore=true;state.movies=[];}
-            let url='/api/movies?page='+state.page+'&limit=50';
+            let url='/api/movies?page='+state.page+'&limit=550';
             if(state.search)url+='&q='+encodeURIComponent(state.search);
             fetch(url).then(r=>r.json()).then(data=>{
                 if(!append)el.grid.innerHTML='';
